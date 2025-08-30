@@ -1,15 +1,163 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hi, I'm Unique ✨</title>
+  <style>
+    :root{
+      --bg: #f7f7fb;
+      --text: #1f2330;
+      --muted: #6b7280;
+      --card: #ffffff;
+      --accent: #6c5ce7;
+      --ring: rgba(108,92,231,.25);
+      --shadow: 0 10px 25px rgba(0,0,0,.08);
+    }
+    html[data-theme="dark"]{
+      --bg: #0f1220;
+      --text: #e5e7eb;
+      --muted: #9aa1b2;
+      --card: #14182a;
+      --accent: #8b5cf6;
+      --ring: rgba(139,92,246,.25);
+      --shadow: 0 10px 30px rgba(0,0,0,.45);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 600px at 10% -10%, var(--ring), transparent),
+                  radial-gradient(1200px 600px at 110% 110%, var(--ring), transparent),
+                  var(--bg);
+      color: var(--text);
+      min-height:100dvh; display:grid; place-items:center; padding:24px;
+    }
+    .card{
+      width:min(620px, 92vw); background:var(--card); border-radius:24px; padding:28px; box-shadow:var(--shadow);
+      border:1px solid rgba(0,0,0,.06);
+      position:relative; overflow:hidden;
+      transition: transform .2s ease;
+    }
+    .card:hover{ transform: translateY(-2px); }
+    .bling{ position:absolute; inset:auto -20% 40% auto; width:220px; height:220px; background:conic-gradient(from 210deg, var(--accent), transparent 70%);
+      filter: blur(30px); opacity:.18; pointer-events:none; }
+
+    header{ display:flex; gap:16px; align-items:center; justify-content:space-between; }
+    .id{ display:flex; gap:16px; align-items:center; }
+    .avatar{ width:56px; height:56px; border-radius:50%; display:grid; place-items:center; background:linear-gradient(135deg, var(--accent), #22d3ee); color:white; font-weight:700; box-shadow: inset 0 0 0 3px rgba(255,255,255,.35); }
+    h1{ font-size:1.4rem; line-height:1.1; margin:0; }
+    p{ margin:.25rem 0 0; color:var(--muted); }
+
+    .btn{
+      appearance:none; border:1px solid transparent; background:var(--text); color:var(--bg);
+      padding:.55rem .85rem; border-radius:999px; font-weight:600; cursor:pointer;
+      box-shadow:var(--shadow); transition: filter .15s ease, transform .05s ease, background .25s ease;
+    }
+    .btn:active{ transform: translateY(1px); }
+    .btn.secondary{ background:transparent; color:var(--text); border-color:rgba(0,0,0,.1); }
+
+    main{ margin-top:18px; display:grid; gap:14px; }
+    .pillbar{ display:flex; flex-wrap:wrap; gap:8px; }
+    .pill{ padding:.4rem .7rem; border-radius:999px; border:1px dashed rgba(0,0,0,.15); color:var(--muted); }
+
+    footer{ margin-top:18px; display:flex; justify-content:space-between; align-items:center; color:var(--muted); font-size:.9rem; }
+
+    .switch{
+      position:absolute; top:14px; right:14px; display:flex; gap:8px; align-items:center;
+    }
+    .switch input{ width:42px; height:26px; -webkit-appearance:none; appearance:none; background:rgba(0,0,0,.15); border-radius:999px; position:relative; outline:none; cursor:pointer; transition: background .25s ease; }
+    .switch input::after{ content:""; position:absolute; top:3px; left:3px; width:20px; height:20px; border-radius:50%; background:white; box-shadow:0 1px 3px rgba(0,0,0,.25); transition: transform .25s ease; }
+    html[data-theme="dark"] .switch input{ background:rgba(255,255,255,.25); }
+    .switch input:checked::after{ transform: translateX(16px); }
+
+    .accent-picker{ display:flex; gap:6px; }
+    .swatch{ width:18px; height:18px; border-radius:50%; border:1px solid rgba(0,0,0,.2); cursor:pointer; }
+  </style>
 </head>
 <body>
-    <h1>01</h1>
-    <h2>02</h2>
-    <h3>03</h3>
-    
+  <div class="card" role="region" aria-label="Profile Card">
+    <div class="bling" aria-hidden="true"></div>
 
+    <label class="switch" title="Toggle theme">
+      <span class="accent-picker" aria-label="Pick accent color">
+        <button class="swatch" style="background:#ef4444" data-accent="#ef4444" aria-label="Red"></button>
+        <button class="swatch" style="background:#06b6d4" data-accent="#06b6d4" aria-label="Cyan"></button>
+        <button class="swatch" style="background:#22c55e" data-accent="#22c55e" aria-label="Green"></button>
+      </span>
+      <input id="theme" type="checkbox" aria-label="Dark mode" />
+    </label>
+
+    <header>
+      <div class="id">
+        <div class="avatar" aria-hidden="true">U</div>
+        <div>
+          <h1 id="greet">Hello!</h1>
+          <p>Simple, unique, single‑file page. Edit the text & colors to make it yours.</p>
+        </div>
+      </div>
+      <button class="btn" id="cta">Say Hi</button>
+    </header>
+
+    <main>
+      <div class="pillbar">
+        <span class="pill">Fast ⚡</span>
+        <span class="pill">No libraries 📦</span>
+        <span class="pill">Responsive 📱</span>
+        <span class="pill">Accessible ♿</span>
+      </div>
+      <p>
+        This file includes a theme toggle, accent color picker, and a tiny script that greets you based on the time of day.
+        Keep what you like, delete what you don't. It's your canvas.
+      </p>
+    </main>
+
+    <footer>
+      <span id="status">—</span>
+      <span>© <span id="year"></span> You.</span>
+    </footer>
+  </div>
+
+  <script>
+    // Minimal JS: greeting, theme toggle with persistence, accent color picker
+    const html = document.documentElement;
+    const greet = document.getElementById('greet');
+    const status = document.getElementById('status');
+    const year = document.getElementById('year');
+    const themeCheckbox = document.getElementById('theme');
+    const cta = document.getElementById('cta');
+
+    // Greeting by local time
+    const h = new Date().getHours();
+    const message = h < 12 ? 'Good morning ☀️' : h < 18 ? 'Good afternoon 🌤️' : 'Good evening 🌙';
+    greet.textContent = message;
+
+    // Year
+    year.textContent = new Date().getFullYear();
+
+    // Theme persistence
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) html.setAttribute('data-theme', savedTheme);
+    themeCheckbox.checked = html.getAttribute('data-theme') === 'dark';
+    themeCheckbox.addEventListener('change', () => {
+      const mode = themeCheckbox.checked ? 'dark' : 'light';
+      html.setAttribute('data-theme', mode);
+      localStorage.setItem('theme', mode);
+    });
+
+    // Accent color picker
+    for (const sw of document.querySelectorAll('.swatch')){
+      sw.addEventListener('click', () => {
+        const color = sw.dataset.accent;
+        document.documentElement.style.setProperty('--accent', color);
+        status.textContent = `Accent set to ${color}`;
+      });
+    }
+
+    // Button interaction
+    cta.addEventListener('click', () => {
+      status.textContent = '👋 Hello there! Thanks for visiting.';
+    });
+  </script>
 </body>
+</html>
 </html>
